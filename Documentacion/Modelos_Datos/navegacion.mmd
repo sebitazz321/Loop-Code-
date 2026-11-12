@@ -1,0 +1,12 @@
+flowchart LR
+  L["01 Login por rol"] --> R["02 Registro y matrícula"]
+  R --> L
+  L -- "Estudiante" --> IE["03 Inicio estudiante"]
+  L -- "Docente" --> ID["07 Inicio docente"]
+  IE --> DA["04 Detalle y entrega"]
+  IE --> BN["05 Boletín de notas"]
+  IE --> LB["06 LoopBot IA"]
+  ID --> CA["08 Calendario"]
+  CA --> NA["09 Crear actividad"]
+  ID --> CE["10 Calificar entregas"]
+  ID --> LB

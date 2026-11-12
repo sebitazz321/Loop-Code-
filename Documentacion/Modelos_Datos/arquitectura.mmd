@@ -1,0 +1,28 @@
+flowchart LR
+  subgraph APP["📱 App Android (Kotlin) — frontend"]
+    direction TB
+    UI["Pantallas<br/>Estudiante · Docente"]
+    RET["Retrofit<br/>cliente HTTP/JSON"]
+    CAL["Calendario nativo"]
+    UI --> RET
+    UI --> CAL
+  end
+  subgraph SRV["🖥️ Backend Node.js + Express"]
+    direction TB
+    API["API REST<br/>rutas · controladores"]
+    AUTHZ["Verificación de<br/>token y rol"]
+    API --> AUTHZ
+  end
+  subgraph DOCKER["🐳 Docker"]
+    DB[("MySQL<br/>materias · actividades<br/>entregas · notas")]
+  end
+  FB["🔐 Firebase Authentication"]
+  MAKE["⚙️ Make.com<br/>Gmail · Google Sheets"]
+  BOT["🤖 LoopBot IA"]
+  RET -- "GET / POST (JSON)" --> API
+  API -- "SQL" --> DB
+  UI -- "registro / login" --> FB
+  AUTHZ -. "valida el token" .-> FB
+  API -- "webhook" --> MAKE
+  UI -- "pregunta" --> BOT
+  BOT -. "pendientes y notas" .-> API

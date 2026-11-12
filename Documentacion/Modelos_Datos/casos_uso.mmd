@@ -1,0 +1,30 @@
+flowchart LR
+  E(["🎓 Estudiante"])
+  D(["👩‍🏫 Docente"])
+  MK(["⚙️ Make.com"])
+  subgraph S["Sistema Loop Gestión"]
+    C1(["CU-01 Registrarse y matricular materias"])
+    C2(["CU-02 Iniciar sesión por rol"])
+    C3(["CU-03 Consultar inicio y KPIs"])
+    C4(["CU-04 Ver detalle y enviar entrega"])
+    C5(["CU-05 Consultar boletín de notas"])
+    C6(["CU-06 Conversar con LoopBot"])
+    C7(["CU-07 Consultar inicio del docente"])
+    C8(["CU-08 Ver calendario de actividades"])
+    C9(["CU-09 Crear actividad"])
+    C10(["CU-10 Calificar entregas"])
+    C11(["CU-11 Notificar y registrar actividad"])
+  end
+  E --- C1
+  E --- C2
+  E --- C3
+  E --- C4
+  E --- C5
+  E --- C6
+  D --- C2
+  D --- C7
+  D --- C8
+  D --- C9
+  D --- C10
+  C9 -. "include" .-> C11
+  C11 --- MK

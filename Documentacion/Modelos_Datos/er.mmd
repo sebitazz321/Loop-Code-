@@ -1,0 +1,42 @@
+erDiagram
+  USUARIO ||--o{ MATRICULA : "se matricula"
+  MATERIA ||--o{ MATRICULA : "tiene"
+  USUARIO ||--o{ MATERIA : "dicta (docente)"
+  MATERIA ||--o{ ACTIVIDAD : "contiene"
+  ACTIVIDAD ||--o{ ENTREGA : "recibe"
+  USUARIO ||--o{ ENTREGA : "envía (estudiante)"
+  USUARIO {
+    string uid PK "uid de Firebase"
+    string nombre
+    string correo
+    string rol "ESTUDIANTE / DOCENTE"
+  }
+  MATERIA {
+    int id PK
+    string nombre
+    string docente_uid FK
+    string periodo "2026-II"
+  }
+  MATRICULA {
+    int id PK
+    string estudiante_uid FK
+    int materia_id FK
+  }
+  ACTIVIDAD {
+    int id PK
+    int materia_id FK
+    string titulo
+    string descripcion
+    datetime fecha_limite
+    decimal valor "porcentaje del corte"
+  }
+  ENTREGA {
+    int id PK
+    int actividad_id FK
+    string estudiante_uid FK
+    string archivo_url
+    string comentario
+    datetime fecha_envio
+    decimal nota "0,0 a 5,0"
+    string retroalimentacion
+  }

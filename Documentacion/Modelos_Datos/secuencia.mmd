@@ -1,0 +1,18 @@
+sequenceDiagram
+  actor D as Docente
+  participant A as App Android
+  participant F as Firebase Auth
+  participant S as API Node.js
+  participant B as MySQL (Docker)
+  participant M as Make.com
+  D->>A: Llena «Nueva actividad» y toca Publicar
+  A->>F: Obtiene el token de la sesión
+  A->>S: POST actividad (JSON + token)
+  S->>F: Verifica el token y el rol docente
+  S->>B: INSERT actividad
+  B-->>S: id de la actividad
+  S->>M: POST webhook (actividad + materia)
+  M-->>S: 200 OK
+  S-->>A: 201 Created
+  A-->>D: «Actividad publicada»
+  M->>M: Gmail a los estudiantes y fila en Google Sheets
